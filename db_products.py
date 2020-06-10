@@ -15,3 +15,7 @@ class ProductTable(MSDBconnection):
             results_list.append(row)
         return results_list
 
+
+p_table = ProductTable()
+
+print(p_table.get_by_id(3))

@@ -46,6 +46,11 @@ customers = cursor.execute('SELECT * FROM Customers')
 # Good way to iterate over database
 while True:
     row = customers.fetchone()
-    print(row)
     if row is None:
         break
+    print(row)
+
+
+id_price = cursor.execute('SELECT ProductID, UnitPrice FROM Products')
+# fetchmany() - used to fetch a specific amount of entries
+print(id_price.fetchmany(20))

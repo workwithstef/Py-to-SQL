@@ -25,6 +25,7 @@ customers = cursor.execute('SELECT * FROM Customers')
 
 - .fetchone() - fetches one entry of received data
 - .fetchall() - fetches all entries of received data
+- .fetchmany(num) - fetches specific num of received data
  
 ##### REMEMBER: cursor remains state -- meaning the data is like a stack of cards,
           if you take (fetch) one, it removes it from the stack

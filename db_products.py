@@ -51,15 +51,15 @@ class ProductTable(MSDBconnection):
 
 p_table = ProductTable()
 
-<<<<<<< HEAD
+
 print(type(p_table.get_by_id(3)))
 
 p_table.add_row("Stefans Special Fried Chicken", 10, 25)
-=======
+
 # print(type(p_table.get_by_id(3)))
 
 p_table.add_row("Stefans Special Fried Chicken", 10, 25)
 
 # print(p_table.get_by_name('Stefan'))
 p_table.get_all()
->>>>>>> 13fa32d7829a39b8aa732df297dc6a5c50b30c11
+

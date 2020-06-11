@@ -6,14 +6,17 @@ class ProductTable(MSDBconnection):
     def get_by_id(self, id):
         return self.sql_query('SELECT * FROM Products WHERE ProductID=' + str(id)).fetchone()
 
+    def get_by_name(self, name):
+        return self.sql_query(f"SELECT * FROM Products WHERE ProductName LIKE '%{name}%'").fetchone()
+
     def get_all(self):
-        results_list = []
-        row = self.sql_query('SELECT * FROM Products').fetchone()
+
         while True:
+            row = self.sql_query('SELECT * FROM Products').fetchone()
             if row is None:
                 break
-            results_list.append(row)
-        return results_list
+            print(row)
+        # return results_list
 
     def add_row(self, product_name, product_price, product_stock_level):
         # I WANT TO INSERT VALUES TO THE PRODUCT TABLE CORRESPONDING TO THE CURRENT COLUMNS
@@ -33,6 +36,9 @@ class ProductTable(MSDBconnection):
 
 p_table = ProductTable()
 
-print(type(p_table.get_by_id(3)))
+# print(type(p_table.get_by_id(3)))
 
 p_table.add_row("Stefans Special Fried Chicken", 10, 25)
+
+# print(p_table.get_by_name('Stefan'))
+p_table.get_all()

@@ -4,21 +4,27 @@ from db_connection import MSDBconnection
 class Customers(MSDBconnection):
 
     def get_by_id(self, id):
-        return self.sql_query('SELECT * FROM Products WHERE CustomerID=' + str(id)).fetchone()
+        return self.sql_query('SELECT * FROM Customers WHERE CustomerID=' + str(id)).fetchone()
 
     def get_by_company(self, company_name):
-        name_result = self.sql_query(f"SELECT * FROM Products WHERE CompanyName LIKE '%{company_name}%'").fetchone()
-        if name_result is None:
-            return f'No results matching {company_name}.'
-        else:
-            return name_result
+        while True:
+            name_result = self.sql_query(f"SELECT * FROM Customers WHERE CompanyName LIKE '%[{company_name}]%'").fetchone()
+            if name_result is None:
+                break
+            # if name_result is None:
+            #     return f'No results matching {company_name}.'
+            else:
+                return name_result
 
     def get_by_city(self, city):
-        city_result = self.sql_query(f"SELECT * FROM Products WHERE City LIKE '%{city}%'").fetchone()
-        if city_result is None:
-            return f'No results matching {city_result}.'
-        else:
-            return city_result
+        city_result_table = self.sql_query(f"SELECT * FROM Customers WHERE City = '{city.capitalize()}'")
+        if city_result_table.fetchone() is None:
+            print(f'No results matching {city}.')
+        while True:
+            one_entry = city_result_table.fetchone()
+            if one_entry is None:
+                break
+            print(one_entry)
 
     # def get_all(self):
     #
@@ -41,5 +47,7 @@ class Customers(MSDBconnection):
             ADD COLUMN {column_name}""")
 
 
+client_table = Customers()
 
+client_table.get_by_city('Lonon')
 
